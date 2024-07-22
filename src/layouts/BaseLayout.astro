@@ -1,0 +1,86 @@
+---
+import "~/styles/base.css";
+import BasicScripts from "~/components/common/BasicScripts.astro";
+import Footer from "~/components/widgets/Footer.astro";
+import Header from "~/components/widgets/Header.astro";
+import { ACTIONS, LINKS, NAME, SOCIAL, DESCRIPTION, TWITTER_CREATOR } from "~/config";
+import { SEO } from "astro-seo";
+import type { Link } from "~/types/links";
+import { ViewTransitions } from "astro:transitions";
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+export interface Props {
+  title: string;
+  description?: string;
+  blogTitle?: string;
+  socialImage?: string;
+}
+
+const { title, description, blogTitle = null, socialImage = null } = Astro.props;
+
+const finalTitle = blogTitle ? `${blogTitle}` : `${NAME} | ${title}`;
+const finalDescription = description || DESCRIPTION;
+const finalImage = socialImage || "https://anthonyinglephotos.com/social.jpg";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      http-equiv="Accept-CH"
+      content="DPR, Width, Downlink, Sec-CH-UA, ECT, Save-Data, RTT"
+    /><!-- enable client hints -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <SEO
+      title={finalTitle}
+      description={finalDescription}
+      openGraph={{
+        basic: {
+          title: finalTitle,
+          type: "website",
+          image: finalImage,
+        },
+      }}
+      twitter={{
+        creator: TWITTER_CREATOR,
+      }}
+      extend={{
+        // extending the default meta tags
+        meta: [
+          {
+            name: "twitter:image",
+            content: finalImage,
+          },
+          { name: "twitter:title", content: finalTitle },
+          { name: "twitter:description", content: finalDescription },
+        ],
+      }}
+    />
+    <SpeedInsights />
+    <ViewTransitions />
+  </head>
+  <body>
+    <slot name="header">
+      <Header isSticky links={LINKS} actions={ACTIONS} />
+    </slot>
+
+    <slot />
+
+    <slot name="footer">
+      <Footer links={[...(LINKS as Link[]), ...(ACTIONS as Link[])]} social={SOCIAL} />
+    </slot>
+    <BasicScripts />
+  </body>
+</html>

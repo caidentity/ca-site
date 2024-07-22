@@ -1,62 +1,21 @@
 {
-  "cSpell.words": [
-    "ABCDEFGHIJKLMNOP",
-    "Acros",
-    "affordance",
-    "ARROWLEFT",
-    "ARROWRIGHT",
-    "Astia",
-    "camelcase",
-    "cloudflarestorage",
-    "cmdk",
-    "CredentialsSignin",
-    "datetime",
-    "Eterna",
-    "exif",
-    "exifr",
-    "exiftool",
-    "favicons",
-    "favs",
-    "ghijklmnopqrstuv",
-    "GPSH",
-    "Hasselblad",
-    "headlessui",
-    "hgetall",
-    "hset",
-    "ILIKE",
-    "jpgs",
-    "Lightbox",
-    "Makernote",
-    "mitigations",
-    "nanoids",
-    "nextjs",
-    "parameterizes",
-    "presigner",
-    "Provia",
-    "qaub",
-    "QRSTUVWXYZ",
-    "ratelimit",
-    "ratelimiter",
-    "Reala",
-    "skippable",
-    "sonner",
-    "Streamable",
-    "Supabase",
-    "thephotoblog",
-    "trpc",
-    "Turbopack",
-    "undici",
-    "unnest",
-    "upstash",
-    "UsKSGcbt",
-    "Velvia",
-    "verceldb",
-    "WRHGZC",
-    "wxyz",
-    "zadd",
-    "zrange"
-  ],
-  "files.associations": {
-    "*.css": "tailwindcss"
-  }
+    "css.customData": [
+        "./vscode.tailwind.json"
+    ],
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "astro", // Enable .astro
+        "typescript", // Enable .ts
+        "typescriptreact" // Enable .tsx
+    ],
+    "files.associations": {
+        "*.mdx": "markdown"
+    },
+    "prettier.documentSelectors": [
+        "**/*.astro"
+    ],
+    "[astro]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
